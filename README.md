@@ -11,6 +11,7 @@ El corpus reúne inscripciones manuscritas relevadas en catorce zonas del Parque
 | `ordenar_corpus.py` | Programa principal: anomalías, rasgos, tokenización comparada, frecuencias, etiquetado con spaCy y exportaciones para Voyant, Recogito y el mapa |
 | `probar_freeling.py` | Etiquetado con FreeLing y comparación con spaCy |
 | `probar_deteccion_lengua.py` | Detección de lengua con Lingua y langid, evaluada contra la anotación manual |
+| `reproducir_muestra.py` | Reproduce el sorteo de las 200 producciones evaluadas a mano (semilla 2026) |
 | `tesina_pln_corpus.ipynb` | Cuaderno de Google Colab que instala todo y corre los tres scripts, comentado línea por línea |
 | `datos/corpus_ejemplo.xlsx` | Muestra anonimizada de 30 producciones, para probar los scripts (ver `datos/LEEME.md`) |
 | `requirements.txt` | Bibliotecas de Python necesarias |
