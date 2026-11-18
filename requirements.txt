@@ -1,0 +1,8 @@
+pandas
+openpyxl
+spacy>=3.8,<3.9
+es_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.8.0/es_core_news_sm-3.8.0-py3-none-any.whl
+nltk==3.9.1
+scikit-learn
+lingua-language-detector
+py3langid

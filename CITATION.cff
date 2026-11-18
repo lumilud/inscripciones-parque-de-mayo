@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Si usás este código, citalo con estos datos."
+title: "Inscripciones de lectura cercana en el Parque de Mayo: scripts de PLN"
+type: software
+authors:
+  - family-names: Ares
+    given-names: Ludmila
+    affiliation: "Universidad Nacional del Sur"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "1.0.0"
+date-released: "2026-11-16"
+license: MIT
+repository-code: "https://github.com/lumilud/inscripciones-parque-de-mayo"
+abstract: >-
+  Scripts de Python y cuaderno de Google Colab de la tesina de Licenciatura en
+  Letras (UNS) sobre inscripciones manuscritas de lectura cercana en el Parque
+  de Mayo (Bahía Blanca). Ordenan la planilla del corpus, detectan anomalías de
+  carga y ponen a prueba tokenizadores, etiquetadores morfosintácticos y
+  detectores de lengua sobre un corpus situado y no estándar.
+keywords:
+  - paisaje lingüístico
+  - procesamiento del lenguaje natural
+  - humanidades digitales
+  - sociolingüística
+  - spaCy
+  - FreeLing

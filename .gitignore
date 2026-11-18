@@ -1,0 +1,8 @@
+# Corpus completo: no se publica
+corpus.csv
+corpus.xlsx
+# Archivos generados
+resultados/
+resultados.zip
+__pycache__/
+*.deb
