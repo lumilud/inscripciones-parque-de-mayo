@@ -2,15 +2,17 @@
 probar_freeling.py
 ==================
 Somete el corpus al etiquetado morfosintáctico y la lematización de FreeLing
-(analizador `analyze`, configuración es.cfg) sobre la transcripción fiel y
-sobre la normalización, y deja una tabla para evaluar cada etiqueta a mano.
+(analizador `analyze`) sobre la transcripción fiel y sobre la normalización, y deja una tabla para evaluar cada etiqueta a mano.
 Es la misma prueba que ordenar_corpus.py hace con spaCy, para compararlas.
 
 Requiere FreeLing instalado (ver instrucciones de instalación en Colab).
 
 Uso:
-    python probar_freeling.py corpus.csv
+    python probar_freeling.py corpus.csv                      # configuración general (es.cfg)
+    python probar_freeling.py corpus.csv --cfg es-ar.cfg      # español de la Argentina
     python probar_freeling.py corpus.csv --salida resultados
+
+La evaluación manual de la ponencia y del artículo se hizo con --cfg es-ar.cfg.
 
 Salida en resultados/:
     09_etiquetado_freeling_para_evaluar.csv   una fila por token
@@ -37,14 +39,14 @@ CLASES = {"N": "NOUN/PROPN", "V": "VERB/AUX", "A": "ADJ", "P": "PRON", "R": "ADV
           "F": "PUNCT", "I": "INTJ"}
 
 
-def analizar(textos: list[str]) -> list[list[tuple[str, str, str, str]]]:
+def analizar(textos: list[str], cfg: str = "es.cfg") -> list[list[tuple[str, str, str, str]]]:
     """Una sola llamada a FreeLing para todo el corpus. A cada texto se le
     agrega un punto final, para que FreeLing lo trate como una oración aparte
     (en la prueba, la opción --flush no separó las líneas y el reconocedor de
     entidades unía nombres de producciones distintas), y entre textos se
     intercala un separador. Ese punto agregado se descarta del resultado."""
     entrada = "\n".join(f"{t} .\n{SEPARADOR} ." for t in textos) + "\n"
-    proc = subprocess.run(["analyze", "-f", "es.cfg", "--outlv", "tagged"],
+    proc = subprocess.run(["analyze", "-f", cfg, "--outlv", "tagged"],
                           input=entrada, capture_output=True, text=True, check=True)
     resultados, actual = [], []
     for linea in proc.stdout.splitlines():
@@ -75,6 +77,8 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("archivo")
     ap.add_argument("--salida", default="resultados")
+    ap.add_argument("--cfg", default="es.cfg",
+                    help="configuración de FreeLing: es.cfg (general) o es-ar.cfg (Argentina)")
     a = ap.parse_args()
     out = Path(a.salida)
     out.mkdir(exist_ok=True)
@@ -87,7 +91,7 @@ def main():
     for version, col in [("transcripción", COL_TRANS), ("normalización", COL_NORM)]:
         sub = valido[valido[col].str.strip() != ""]
         textos = [" ".join(t.split()) for t in sub[col]]
-        for (_, r), toks in zip(sub.iterrows(), analizar(textos)):
+        for (_, r), toks in zip(sub.iterrows(), analizar(textos, a.cfg)):
             for forma, lema, etiqueta, prob in toks:
                 filas.append({COL_ID: r[COL_ID], COL_ZONA: r[COL_ZONA], "version": version,
                               "token": forma, "lema": lema, "etiqueta_EAGLES": etiqueta,
@@ -98,6 +102,7 @@ def main():
     et.to_csv(out / "09_etiquetado_freeling_para_evaluar.csv", index=False)
 
     tr = et[et.version == "transcripción"]
+    print(f"Configuración de FreeLing: {a.cfg}")
     print(f"Tokens etiquetados (transcripción): {len(tr)}")
     print(f"Proporción de nombres propios (NP): {tr.nombre_propio.mean():.1%}")
     print(tr["clase"].value_counts(normalize=True).round(3).to_string())

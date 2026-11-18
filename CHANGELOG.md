@@ -2,10 +2,14 @@
 
 Cada versión publicada tiene una entrada con lo que cambió y por qué. Los números siguen el esquema MAYOR.MENOR.CORRECCIÓN: la versión 1.0.0 será la primera que produjo resultados citados.
 
-## Sin publicar
+## 1.0.0 (18/11/2026)
 
-- Incorporar la versión del 28/10/2026 de `ordenar_corpus.py`, con la que se obtuvieron las cifras de la ponencia en el VII Congreso de la AAHD (459 producciones, 1181 tokens, 653 formas). En esa versión, `cargar()` reconoce si la planilla es en realidad un Excel y, si es un CSV, prueba tres codificaciones.
-- Incorporar la versión de `probar_freeling.py` con la opción `--cfg`, para elegir entre `es.cfg` y `es-ar.cfg`.
+Primera versión con la que se obtienen las cifras citadas en la ponencia del VII Congreso de la AAHD y en el artículo derivado: 459 producciones, 1181 tokens, 653 formas y 325 producciones en las que coinciden los cuatro tokenizadores.
+
+- `ordenar_corpus.py`: `cargar()` reconoce si un archivo descargado como .csv es en realidad un Excel (empieza con «PK») y, si es un CSV, prueba tres codificaciones (utf-8-sig, cp1252, latin-1). Lee todo como texto y con `keep_default_na=False`, para que una celda que dice «NA» no se lea como vacía. La versión anterior leía cualquier archivo con `read_excel`, de modo que no podía abrir un CSV.
+- `probar_freeling.py`: opción `--cfg` para elegir la configuración de FreeLing (`es.cfg`, general, o `es-ar.cfg`, español de la Argentina). La evaluación manual se hizo con `es-ar.cfg`, y el cuaderno de Colab ahora la usa.
+
+Cómo se armó esta versión: el archivo del 28/10/2026 no se conservó. Los cambios se reconstruyeron a partir del documento «Cómo leer el programa ordenar_corpus.py comentado», que describe esa versión función por función. La reconstrucción se verificó sobre la hoja 02 de la planilla de evaluación (459 producciones). Con las tres fechas que Google Sheets había convertido a su propio formato devueltas a dd/mm/aaaa (ID 133, 308 y 337; la del ID 308 escrita «19/6/25»), el programa da 459 producciones, 1181 tokens, 653 formas, 325 coincidencias entre tokenizadores y las frecuencias del artículo («y» 55, «+» 39, «a» 32, «te» 29, «te amo» 13). Los números de línea no coinciden exactamente con los del documento comentado. `probar_freeling.py` no se volvió a correr con FreeLing después del cambio.
 
 ## 0.2.0 (18/11/2026)
 

@@ -29,7 +29,7 @@ python ordenar_corpus.py datos/corpus_ejemplo.xlsx --salida resultados
 python probar_deteccion_lengua.py datos/corpus_ejemplo.xlsx --salida resultados
 ```
 
-`probar_freeling.py` necesita además FreeLing 4.2, que se instala aparte; la sección 1 del cuaderno muestra cómo hacerlo en Ubuntu 22.04.
+`probar_freeling.py` necesita además FreeLing 4.2, que se instala aparte; la sección 1 del cuaderno muestra cómo hacerlo en Ubuntu 22.04. Con `--cfg es-ar.cfg` usa la configuración del español de la Argentina, que es la de la evaluación; sin esa opción, la general (`es.cfg`).
 
 Los scripts leen la hoja `CORPUS` de la planilla. Las columnas que usan son `ZONA`, `ID_FOTO`, `TRANSCRIPCION` y `NORMALIZACIÓN`; las de soporte, instrumento, trazo, legibilidad y lengua se usan para los conteos, y las de codificación (`FUNCION_1` y siguientes) para los cruces, cuando tienen datos.
 

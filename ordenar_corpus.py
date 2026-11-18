@@ -115,10 +115,26 @@ SALIDA = Path("resultados")
 # ---------------------------------------------------------------------------
 
 def cargar(ruta: str) -> pd.DataFrame:
-    if ruta.endswith((".xlsx", ".xls")):
-        df = pd.read_excel(ruta, sheet_name="CORPUS", dtype=str)
+    """Lee la planilla del corpus (CSV o Excel) sin alterar ningún valor.
+
+    Un archivo descargado como .csv puede ser en realidad un Excel: todo Excel
+    empieza con las letras «PK», y en ese caso se lee la hoja CORPUS. Si es un
+    CSV, se prueban tres codificaciones hasta que una funciona. Todo se lee
+    como texto (dtype=str) y con keep_default_na=False, para que una celda que
+    dice «NA» no se lea como vacía y «05/12» o «007» conserven su forma."""
+    with open(ruta, "rb") as f:
+        es_excel = f.read(2) == b"PK"
+    if es_excel or ruta.lower().endswith((".xlsx", ".xls")):
+        df = pd.read_excel(ruta, sheet_name="CORPUS", dtype=str,
+                           keep_default_na=False)
     else:
-        df = pd.read_excel(ruta, sheet_name="CORPUS", dtype=str)
+        for cod in ("utf-8-sig", "cp1252", "latin-1"):
+            try:
+                df = pd.read_csv(ruta, dtype=str, encoding=cod,
+                                 keep_default_na=False)
+                break
+            except UnicodeDecodeError:
+                continue
     df = df.fillna("")
     df.columns = [c.strip() for c in df.columns]
     if COL_FUNC not in df and "CLASIFICACION_FUNCIONAL" in df:
