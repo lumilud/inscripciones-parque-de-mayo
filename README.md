@@ -21,7 +21,7 @@ El corpus reúne inscripciones manuscritas relevadas en catorce zonas del Parque
 
 **En Google Colab.** [Abrí el cuaderno en Colab](https://colab.research.google.com/github/lumilud/inscripciones-parque-de-mayo/blob/main/tesina_pln_corpus.ipynb) y corré las celdas en orden. En la sección 4 elegí la opción B, que trabaja con los datos de ejemplo.
 
-**En una computadora propia**, con Python 3.10 o posterior:
+**En una computadora propia**, con Python 3.11 o posterior:
 
 ```
 pip install -r requirements.txt
@@ -51,9 +51,9 @@ Cada script deja sus archivos en la carpeta indicada con `--salida`:
 
 ## Versiones
 
-Cada versión publicada tiene un número (v0.1.0, v1.0.0...) y una entrada en `CHANGELOG.md` que explica qué cambió y por qué. Para repetir un análisis citado, usá la versión que figura en el texto: en el cuaderno, poné ese número en la variable `VERSION` de la sección 3.
+Cada versión publicada tiene un número (v0.1.0, v1.0.0...) y una entrada en `CHANGELOG.md` que explica qué cambió y por qué. Para repetir un análisis citado, usá la versión que figura en el texto: en el cuaderno, poné ese número en la variable `VERSION` de la sección 2. La sección 3 instala entonces las bibliotecas con las versiones de `requirements.txt` de esa versión del código.
 
-Los resultados de la tesina se obtuvieron con Python 3.13, spaCy 3.8.18 con el modelo `es_core_news_sm` 3.8.0, NLTK 3.9.1 y FreeLing 4.2.1.
+Los resultados de la tesina se obtuvieron con Python 3.13, spaCy 3.8.18 con el modelo `es_core_news_sm` 3.8.0, NLTK 3.9.1 y FreeLing 4.2.1. Desde la versión 1.0.1, `requirements.txt` fija esas versiones y las del resto de las bibliotecas, y el cuaderno anota en `resultados/entorno.txt` las versiones con las que se hizo cada corrida. La versión 1.0.1 tiene el mismo código de análisis que la 1.0.0, así que reproduce las mismas cifras.
 
 ## Cómo citar
 

@@ -1,8 +1,16 @@
-pandas
-openpyxl
-spacy>=3.8,<3.9
+# Versiones fijas: con otra versión de una herramienta, los resultados pueden cambiar.
+# Instalar con: pip install -r requirements.txt  (Python 3.11 o posterior)
+
+# Versiones con las que se obtuvieron los resultados citados (ver README)
+spacy==3.8.18
 es_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.8.0/es_core_news_sm-3.8.0-py3-none-any.whl
 nltk==3.9.1
-scikit-learn
-lingua-language-detector
-py3langid
+pandas==3.0.5
+numpy==2.5.3
+
+# Versiones vigentes al 23/11/2026. No consta con cuáles se hizo la evaluación;
+# desde esta versión, el cuaderno las anota en resultados/entorno.txt en cada corrida
+openpyxl==3.1.5
+scikit-learn==1.9.1
+lingua-language-detector==2.2.0
+py3langid==0.4.0

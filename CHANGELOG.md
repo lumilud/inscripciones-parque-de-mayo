@@ -2,6 +2,13 @@
 
 Cada versión publicada tiene una entrada con lo que cambió y por qué. Los números siguen el esquema MAYOR.MENOR.CORRECCIÓN: la versión 1.0.0 será la primera que produjo resultados citados.
 
+## 1.0.1 (23/11/2026)
+
+No cambia el código de análisis: las cifras son las mismas de la versión 1.0.0. Fija el entorno para que una corrida posterior use las mismas herramientas.
+
+- `requirements.txt`: versiones exactas de todas las bibliotecas. spaCy 3.8.18, NLTK 3.9.1, pandas 3.0.5 y numpy 2.5.3 son las versiones con las que se obtuvieron los resultados citados. De openpyxl, scikit-learn, Lingua y langid no consta qué versión se usó en la evaluación; se fijan las vigentes al 23/11/2026. Como pandas 3.0 necesita Python 3.11, el README pasa a pedir Python 3.11 o posterior.
+- Cuaderno de Colab: la instalación de las bibliotecas pasa después de la descarga del código (ahora sección 2, «Traer el código desde GitHub», y sección 3, «Instalar las bibliotecas de Python») e instala desde `requirements.txt`. Antes instalaba la última versión de cada biblioteca, sin tener en cuenta la versión del código elegida. Al correr `ordenar_corpus.py`, el cuaderno anota el número de versión publicada en `resultados/version_del_codigo.txt` y las versiones de todas las bibliotecas en `resultados/entorno.txt`.
+
 ## 1.0.0 (18/11/2026)
 
 Primera versión con la que se obtienen las cifras citadas en la ponencia del VII Congreso de la AAHD y en el artículo derivado: 459 producciones, 1181 tokens, 653 formas y 325 producciones en las que coinciden los cuatro tokenizadores.
