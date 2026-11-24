@@ -1,6 +1,6 @@
 # Inscripciones de lectura cercana en el Parque de Mayo: scripts de PLN
 
-Código de la tesina de Licenciatura en Letras (Universidad Nacional del Sur) *Lo escrito en los márgenes: inscripciones manuscritas de lectura cercana en el Parque de Mayo (Bahía Blanca)*, de Ludmila Ares, dirigida por Yolanda Hipperdinger y Lucía Cantamutto.
+Código de la tesina de Licenciatura en Letras (Universidad Nacional del Sur) *Lo escrito en los márgenes: inscripciones manuscritas de lectura cercana en el Parque de Mayo (Bahía Blanca)*, de Ludmila Ares.
 
 El corpus reúne inscripciones manuscritas relevadas en catorce zonas del Parque de Mayo y cargadas en una planilla, una fila por producción. Los scripts ordenan esa planilla, detectan problemas de carga sin corregirlos y ponen a prueba herramientas de procesamiento del lenguaje natural (tokenizadores, etiquetadores morfosintácticos y detectores de lengua) sobre un corpus situado y no estándar: fechas, usuarios de redes, sumatorias de nombres, variación ortográfica y alternancia de lenguas. La clasificación funcional de las producciones es manual; el programa solo mide cuánto se acerca a ella un clasificador automático simple.
 
